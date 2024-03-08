@@ -1,14 +1,4 @@
-FROM eclipse-temurin:21 AS build
-WORKDIR /app
-COPY . /app
-RUN ./mvnw verify
-
 FROM eclipse-temurin:21
-
-EXPOSE 8080
-
-RUN mkdir /app
-
-COPY --from=build /app/target/*.jar /app/app.jar
-
-ENTRYPOINT ["java","-jar","/app/app.jar"]
+WORKDIR /opt/ipms
+COPY ./target/spring-ai-redis-demo-0.0.1-SNAPSHOT.jar ipms.jar
+ENTRYPOINT ["java","-jar","/opt/ipms/ipms.jar"]

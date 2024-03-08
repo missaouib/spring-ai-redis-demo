@@ -23,6 +23,7 @@ public class RagConfiguration {
         var config = RedisVectorStoreConfig.builder().withURI(properties.getUri()).withIndexName(properties.getIndex())
                 .withPrefix(properties.getPrefix()).build();
         RedisVectorStore vectorStore = new RedisVectorStore(config, embeddingClient);
+
         vectorStore.afterPropertiesSet();
         return vectorStore;
     }
